@@ -1,0 +1,71 @@
+{
+    "combo": {
+        "data": {
+            "categories": [
+                {
+                    "id": "1",
+                    "description": "Internet",
+                    "plans": [
+                        {
+                            "id": 1,
+                            "description": "100 MEGA",
+                            "value": 99.9
+                        },
+                        {
+                            "id": 1,
+                            "description": "200 MEGA",
+                            "value": 109.9
+                        },
+                        {
+                            "id": 1,
+                            "description": "300 MEGA",
+                            "value": 119.9
+                        },
+                        {
+                            "id": 1,
+                            "description": "400 MEGA",
+                            "value": 129.9
+                        },
+                        {
+                            "id": 1,
+                            "description": "500 MEGA",
+                            "value": 139.9
+                        },
+                        {
+                            "id": 1,
+                            "description": "1000 MEGA",
+                            "value": 199.9
+                        }
+                    ]
+                },
+                {
+                    "id": "1",
+                    "description": "Telefone",
+                    "plans": [
+                        {
+                            "id": 1,
+                            "description": "Local Fixo",
+                            "value": 19.9
+                        },
+                        {
+                            "id": 1,
+                            "description": "Local Ilimitado",
+                            "value": 29.9
+                        },
+                        {
+                            "id": 1,
+                            "description": "Nacional",
+                            "value": 39.9
+                        },
+                        {
+                            "id": 1,
+                            "description": "Nacional Ilimitado",
+                            "value": 49.9
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+
+}
