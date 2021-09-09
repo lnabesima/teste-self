@@ -1,32 +1,54 @@
-
-    async function getCombo(){
-        try {
-            const response = await fetch("http://localhost:3000/combo");
-            const data = await response.json();
-            console.log(data);
-        // showDataPlans(data);
-        } catch (error) {
-        console.error(error);
+let dataPlans = [];
+let dataValues = [];
+async function getCombo(){
+    try {
+        const response = await fetch("http://localhost:3000/combo");
+        const data = await response.json();
+        // console.log(data);
+    showDataPlans(data);
+    appendText(dataPlans);
+    appendValues(dataValues)
+    
+    } catch (error) {
+    console.error(error);
     }
 }
 
 getCombo();
 
 
-// function showDataPlans(data) {
-//     for(let key in data.data){
+function showDataPlans(data) {
+    for(let key in data.data){
+        
+        let categories = data.data[key];
+        for(let category in categories){
 
-//         let categories = data.data[key];
-//         for(let category in categories){
+            let cat = categories[category];
+            if(cat.description === "Internet"){
 
-//             let cat = categories[category];
-//             if(cat.description === "Internet"){
+                    for(let i = 0; i < cat.plans.length; i++){
+                        dataPlans.push(cat.plans[i].description);
+                    }
+                    // return dataPlans;
+                    for(let j = 0; j < cat.plans.length; j++){
+                        dataValues.push(cat.plans[j].value);
+                        // console.log(dataValues);
+                    }
+                    // return dataValues;
+            }
+        }
+    }
+}
+function appendText(text){
+    let div = document.getElementById("names");
+    div.innerHTML = text;
+}
 
-//                 for(let plans in cat.plans){
-//                     console.log(plans[0]);
-//                     }
-//                 }
-//             }
+function appendValues(text){
+    let div = document.getElementById("values");
+    div.innerHTML = text;
+}
+
 
             // for(let plans in cat){
             //     if(!cat.hasOwnProperty(plans)) continue;
