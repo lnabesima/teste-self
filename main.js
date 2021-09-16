@@ -1,20 +1,25 @@
 let dataPlans = [];
 let dataValues = [];
+let phonePlans = [];
+let phoneValues = [];
 async function getCombo(){
     try {
         const response = await fetch("http://localhost:3000/combo");
         const data = await response.json();
-        // console.log(data);
-    showDataPlans(data);
-    appendText(dataPlans);
-    appendValues(dataValues)
+        showDataPlans(data);
+        addDivFromArray(dataPlans, dataValues, "dataPlans");
+        // appendText("dataPlans", dataPlans);
+        // appendText("dataValues", dataValues);
+        addDivFromArray(phonePlans, phoneValues, "phonePlans");
+        // appendText("phonePlans", phonePlans);
+        // appendText("phoneValues", phoneValues);
+        
     
     } catch (error) {
     console.error(error);
     }
 }
 
-getCombo();
 
 
 function showDataPlans(data) {
@@ -25,71 +30,44 @@ function showDataPlans(data) {
 
             let cat = categories[category];
             if(cat.description === "Internet"){
-
+                
                     for(let i = 0; i < cat.plans.length; i++){
                         dataPlans.push(cat.plans[i].description);
                     }
-                    // return dataPlans;
                     for(let j = 0; j < cat.plans.length; j++){
                         dataValues.push(cat.plans[j].value);
-                        // console.log(dataValues);
                     }
-                    // return dataValues;
+            }
+            
+            if(cat.description === "Telefone"){
+                for(let i = 0; i < cat.plans.length; i++){
+                    phonePlans.push(cat.plans[i].description);
+                }
+                for(let j = 0; j < cat.plans.length; j++){
+                    phoneValues.push(cat.plans[j].value);
+                }
             }
         }
     }
 }
-function appendText(text){
-    let div = document.getElementById("names");
+function appendText(id, text){
+    let div = document.getElementById(id);
     div.innerHTML = text;
 }
 
-function appendValues(text){
-    let div = document.getElementById("values");
-    div.innerHTML = text;
+function addDivFromArray(arr1, arr2, id){
+    for(let i=0; i<arr1.length; i++){
+        let newDiv = document.createElement("div");
+        let newPlan = document.createElement("p");
+        let textNode = document.createTextNode(arr1[i]);
+        newPlan.appendChild(textNode);
+        newDiv.appendChild(newPlan);
+        let newValue = document.createElement("p");
+        textNode = document.createTextNode(arr2[i]);
+        newValue.appendChild(textNode);
+        newDiv.appendChild(newValue);
+        document.getElementById(id).appendChild(newDiv);
+    }
 }
 
-
-            // for(let plans in cat){
-            //     if(!cat.hasOwnProperty(plans)) continue;
-
-            //     if(cat[plans][description] === "Internet"){
-            //         console.log("deu certo");
-            //     }
-            // }
-
-
-// function showDataPlans(data){
-//     let output = "";
-//     let outputArr = [];
-//     try {
-//         for(let plan in data.data.categories[0].plans[0].description){
-//             console.log(Object.values(plan));
-//             // for(let plans = 0; category[plans] <= category.length; plans++){
-//             //     for (let description in category[plans]){
-//             //         console.log(category[plans][description])
-//             //     }
-//             // }
-//             output += `<li>${plan}</li>`;
-//             document.querySelector('body').innerHTML = output;
-//             outputArr.push(plan);
-//             console.log(outputArr);
-//         }
-//     } catch (error) {
-//         console.error(error)
-//     }
-// };
-//     // for(let i in data){
-//     //     while(i <= data.data.categories[0].plans[0].description.length){
-//     //         output += `<li>${data.data.categories[0].plans[0].description}</li>`;
-//     //         output += `<li>${data.data.categories[0].plans[0].value.toFixed(2)}</li>`;
-//     //         i++;
-//     //     }
-//     // }
-
-//     // for(let i = 0; i <= data.data.categories[0].plans[i].description.length; i++){
-//     //     output += `<li>${data.data.categories[0].plans[i].description}</li>`;
-//     // }
-//     document.querySelector('body').innerHTML = output;
-// }
-
+getCombo();
