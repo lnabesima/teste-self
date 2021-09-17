@@ -1,0 +1,6 @@
+#dataPlans div, #phonePlans div{
+    margin: 10px;
+    border: 1px solid black;
+    display: inline-block;
+}
+
