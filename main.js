@@ -77,7 +77,8 @@ function updateCart(){
 
     let btns = document.querySelectorAll('.btn');
     btns.forEach(btn => btn.addEventListener('click', (ev) => {
-        console.log('click');
+        let test = ev.target;
+        console.log(test.closest('h2').innerHTML);
     }));
 }
 
