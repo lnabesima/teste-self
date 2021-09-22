@@ -1,25 +1,34 @@
-let dataPlans = [];
-let dataValues = [];
-let phonePlans = [];
-let phoneValues = [];
+let combo;
+let internet;
+let phone;
+let internetSelected;
+let phoneSelected;
+let internetValue = 0;
+let phoneValue = 0;
+let selection;
 
 async function getCombo(){
+    /* This function retrieves the data from the API and stores in three variables:
+    - combo, which contains all the data;
+    - internet, which contains the information related to data plans and
+    - phone, which contains the information related to phone plans.
+    After that, it distributes the data into divs, to be displayed on the screen. */
     try {
-        const response = await fetch("http://localhost:3000/combo");
+        const response = await fetch("http://localhost:3000/combo"); //this URL should be switched to the actual provided API
         const data = await response.json();
-        showDataPlans(data);
-        addDivFromArray(dataPlans, dataValues, "dataPlans");
-        addDivFromArray(phonePlans, phoneValues, "phonePlans");
-        updateCart()
+        combo = data.data;
+        getPlans(data);
+        internet.forEach((currentValue) => {addDiv(currentValue, "dataPlans")});
+        phone.forEach((currentValue) => {addDiv(currentValue, "phonePlans")});
         
-
-    
     } catch (error) {
     console.error(error);
     }
 }
 
-function showDataPlans(data) {
+function getPlans(data) {
+    /*This is the function that actually does the storing work. It delves into the
+    nested data structure and retrieves the information. */
     for(let key in data.data){
         
         let categories = data.data[key];
@@ -27,63 +36,112 @@ function showDataPlans(data) {
 
             let cat = categories[category];
             if(cat.description === "Internet"){
-                
-                    for(let i = 0; i < cat.plans.length; i++){
-                        dataPlans.push(cat.plans[i].description);
-                    }
-                    for(let j = 0; j < cat.plans.length; j++){
-                        dataValues.push(cat.plans[j].value);
-                    }
+                internet = cat.plans;
             }
             
             if(cat.description === "Telefone"){
-                for(let i = 0; i < cat.plans.length; i++){
-                    phonePlans.push(cat.plans[i].description);
-                }
-                for(let j = 0; j < cat.plans.length; j++){
-                    phoneValues.push(cat.plans[j].value);
-                }
+                phone = cat.plans;
             }
         }
     }
 }
 
-function addDivFromArray(planArr, valueArr, id){
-    for(let i=0; i<planArr.length; i++){
-        let newDiv = document.createElement("div");
-        let newPlan = document.createElement("p");
-        let textNode = document.createTextNode(planArr[i]);
-        newPlan.appendChild(textNode);
-        newPlan.setAttribute("class", "plan");
-        newDiv.appendChild(newPlan);
-        let newValue = document.createElement("p");
-        textNode = document.createTextNode(valueArr[i]);
-        newValue.appendChild(textNode);
-        newValue.setAttribute("class", "value");
-        newDiv.appendChild(newValue);
-        let button = document.createElement("button");
-        button.innerHTML = "Selecionar"
-        button.setAttribute("class", "btn")
-        newDiv.appendChild(button);
+function addDiv(element, id){
+    /* Here we create some divs and append the plans information to be displayed. */
+    let newDiv = document.createElement("div");
+    let newPlan = document.createElement("p"); //adding the plan name
+    let textNode = document.createTextNode(element.description);
+    newPlan.appendChild(textNode);
+    newPlan.setAttribute("class", "plan");
+    newDiv.appendChild(newPlan);
+    
+    let newValue = document.createElement("p"); //adding the plan price
+    textNode = document.createTextNode(element.value);
+    newValue.appendChild(textNode);
+    newValue.setAttribute("class", "value");
+    newDiv.appendChild(newValue);
 
-        document.getElementById(id).appendChild(newDiv);
-    }
+    /* This part creates a button that call a function when clicked. This function
+    will select a plan and compare it against all plans. When matched, the selected
+    plan will be stored in a variable. */
+    let button = document.createElement("button");
+    button.innerHTML = "Selecionar";
+    button.setAttribute("class", "btn");
+    button.addEventListener('click', () =>{
+        compare(element.description, element.id)
+    })
+    newDiv.appendChild(button);
+
+    document.getElementById(id).appendChild(newDiv);
+}
+
+function compare(description, id){
+    /* This function compares the selected plan with all plans. After the match is found,
+    the selected plan is stored in a variable, along with it's price. After this
+    another function is invoked, updating the shopping cart. */
+    let iteratorArr;
+    let actualPlan = `${description} ${id}`;
+    internet.forEach((currentValue) => {
+        iteratorArr = `${currentValue.description} ${currentValue.id}`
+        if(iteratorArr == actualPlan){
+            return internetSelected = description;
+        }
+    })
+    internet.forEach((currentValue) =>{
+        iteratorArr = `${currentValue.description} ${currentValue.id}`
+        if(iteratorArr == actualPlan){
+            return internetValue = currentValue.value;
+        }
+    })
+
+    phone.forEach((currentValue) => {
+        iteratorArr = `${currentValue.description} ${currentValue.id}`
+        if(iteratorArr == actualPlan){
+            return phoneSelected = description;
+        }
+    })
+
+    phone.forEach((currentValue) =>{
+        iteratorArr = `${currentValue.description} ${currentValue.id}`
+        if(iteratorArr == actualPlan){
+            return phoneValue = currentValue.value;
+        }
+    })
+    /* A better, more elegant, efficient and cleaner way to do this should exist
+    but my 5-year-old brain doesn't know how to do it yet. Sorry about that. */
+    updateCart()
 }
 
 
 function updateCart(){
-    let dataCart = document.getElementById('dataSelected')
+    /* The cart is updated with the selected plans and prices with this function. */
+    let internet = document.getElementById("selectedInternetPlan");
+    let phone = document.getElementById("selectedPhonePlan");
+    let sum = document.getElementById("selectedTotal")
+    let internetPrice = parseFloat(internetValue); //it kept getting stored as a string, so I needed to parse as float.
+    let phonePrice = parseFloat(phoneValue);
+    
 
+    if(internetSelected == undefined || internetSelected == ""){
+        /* I tried to show this placeholder before the plan selection, but it won't work properly.
+        Maybe in the future I'll try to fix this, but right now I don't care about it. */
+        internet.innerHTML = "Selecione um plano."
+    } else {
+        internet.innerHTML = ""; //Needed to clear the p as the plan name kept getting concatenated and not replaced as it should
+        internet.innerHTML = internetSelected;
+        sum.innerHTML = "";
+        sum.innerHTML = (internetPrice + phonePrice).toFixed(2);
 
-    let btns = document.querySelectorAll('.btn');
-    btns.forEach(btn => btn.addEventListener('click', (ev) => {
-        let test = ev.target;
-        console.log(test.closest('h2').innerHTML);
-    }));
+    }
+    
+    if(phoneSelected == undefined || phoneSelected == ""){
+        phone.innerHTML = "Selecione um plano";
+    } else {
+        phone.innerHTML = "";
+        phone.innerHTML = phoneSelected;
+        sum.innerHTML = "";
+        sum.innerHTML = (internetPrice + phonePrice).toFixed(2);
+    }
 }
-
-
-
-
 
 getCombo();
