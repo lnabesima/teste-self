@@ -56,7 +56,7 @@ function addDiv(element, id){
     newDiv.appendChild(newPlan);
     
     let newValue = document.createElement("p"); //adding the plan price
-    textNode = document.createTextNode(element.value);
+    textNode = document.createTextNode(`R$ ${element.value.toFixed(2)}`);
     newValue.appendChild(textNode);
     newValue.setAttribute("class", "value");
     newDiv.appendChild(newValue);
@@ -72,6 +72,7 @@ function addDiv(element, id){
     })
     newDiv.appendChild(button);
 
+    newDiv.setAttribute("class", "swiper-slide")
     document.getElementById(id).appendChild(newDiv);
 }
 
@@ -128,9 +129,9 @@ function updateCart(){
         internet.innerHTML = "Selecione um plano."
     } else {
         internet.innerHTML = ""; //Needed to clear the p as the plan name kept getting concatenated and not replaced as it should
-        internet.innerHTML = internetSelected;
+        internet.innerHTML = `${internetSelected} - R$ ${internetPrice.toFixed(2)}`;
         sum.innerHTML = "";
-        sum.innerHTML = (internetPrice + phonePrice).toFixed(2);
+        sum.innerHTML = `R$ ${(internetPrice + phonePrice).toFixed(2)}`;
 
     }
     
@@ -138,10 +139,28 @@ function updateCart(){
         phone.innerHTML = "Selecione um plano";
     } else {
         phone.innerHTML = "";
-        phone.innerHTML = phoneSelected;
+        phone.innerHTML = `${phoneSelected} - R$ ${phonePrice.toFixed(2)}`;
         sum.innerHTML = "";
-        sum.innerHTML = (internetPrice + phonePrice).toFixed(2);
+        sum.innerHTML = `R$ ${(internetPrice + phonePrice).toFixed(2)}`;
     }
 }
 
 getCombo();
+
+
+const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    direction: 'horizontal',
+    mousewheel: true,
+    // loop: true,
+    slidesPerView: 'auto',
+    // slidesPerPage: 6,
+    slidesPerGroup: 1,
+    centeredSlides: true,
+    centeredSlidesBounds: true,
+
+    // If we need pagination
+    pagination: {
+        el: '.swiper-pagination',
+    },
+});

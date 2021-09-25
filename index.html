@@ -5,39 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <h1>Monte seu combo</h1>
+    </header>
+    <main>
+        <div id="shoppingCart">
+            <div class="container">
+                <h2>CARRINHO</h2>
+                <div id="cart">
+                    <div id="dataSelected">
+                        <h3>Internet</h3>
+                        <p id="selectedInternetPlan"></p>
+                    </div>
+        
+                    <div id="phoneSelected">
+                        <h3>Telefone</h3>
+                        <p id="selectedPhonePlan"></p>
+                    </div>
+            
+                    <div id="total">
+                        <h3>Total</h3>
+                        <p id="selectedTotal"></p>
+                    </div>
+            
+                <button>ASSINE JÁ</button>
+                </div>
+            </div>
+            
+            
+        </div>
+
+        <div id="plans">
+            <div class="container swiper">
+                <h2>INTERNET</h2>
+                <div id="dataPlans" class="swiper-wrapper">
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="container swiper">
+                <h2>TELEFONE</h2>
+                <div id="phonePlans" class="swiper-wrapper">
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
     
-    <div id="dataPlans">
-        <h2>INTERNET</h2>
-    </div>
-    <div id="phonePlans">
-        <h2>TELEFONE</h2>
-    </div>
-
-    <div id="cart">
-        <h2>CARRINHO</h2>
-        <div id="dataSelected">
-            <h3>Internet</h3>
-            <p id="selectedInternetPlan"></p>
-        </div>
-
-        <div id="phoneSelected">
-            <h3>Telefone</h3>
-            <p id="selectedPhonePlan"></p>
-        </div>
-
-        <div id="total">
-            <h3>Total</h3>
-            <p id="selectedTotal"></p>
-        </div>
-
-        <button>ASSINE JÁ</button>
-    </div>
-
-
+    </main>
+    
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <script src="main.js"></script>
-    <!-- <script src="app.js"></script> -->
 </body>
 </html>
