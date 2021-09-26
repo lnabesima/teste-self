@@ -43,7 +43,7 @@ button{
     background: linear-gradient(180deg, var(--button-color-1) 26%, var(--button-color-2) 100%);
     border: 1px solid #A62929;
     color: #f0f8ff;
-    width: 20vw;
+    width: 25vw;
     height: 6vh;
     border-radius: 10px;
 }
@@ -76,12 +76,12 @@ main #shoppingCart .container #cart{
     display: grid;
     grid-template: 1fr 1fr / 1fr 1fr;
     gap: 0.2rem;
-    padding: 0px 10px 10px 10px;
+    padding: 0px 10px;
 }
 
 main #shoppingCart button{
     justify-self: center;
-    align-self: end;
+    align-self: center;
 }
 
 /*-- Plans --*/
@@ -102,11 +102,20 @@ main #plans #dataPlans, main #plans #phonePlans{
 #dataPlans div, #phonePlans div{
     border: 2px solid var(--base-color-2);
     margin: 10px;
-    padding: 15px;
-    width: 30vw;
-    height: 20vh;
+    padding: 5px 10px;
+    width: 35vw;
+    height: 18vh;
     display: grid;
     justify-items: center;
+}
+
+#phonePlans div{
+    width: 55vw;
+}
+
+#dataPlans .swiper-slide-active, #phonePlans .swiper-slide-active{
+    font-weight: 700;
+    border: 2px dashed var(--base-color-2);
 }
 
 .swiper-pagination{
@@ -119,6 +128,30 @@ main #plans #dataPlans, main #plans #phonePlans{
 
 
 @media (min-width: 768px){
+    /*-- Bases --*/
+    .container{
+        width: 70vw;
+        height: 41vh;
+    }
+
+    button{
+        width: 12vw;
+        height: 8vh;
+    }
+    
+    main #plans{ 
+        margin-left: 2vw;
+        margin-right: 30vw;
+    }
+
+    
+    #dataPlans div, #phonePlans div{
+        width: 20vw;
+        height: 25vh;
+        padding: 1vw;
+    }
+
+
     main #shoppingCart, main #shoppingCart .container{
         position: absolute;
         right: 3%;
@@ -127,18 +160,22 @@ main #plans #dataPlans, main #plans #phonePlans{
         padding: 0;
         margin: 0;
     }
-
+    
     main #shoppingCart .container #cart{
+        height: 77vh;
         display: flex;
         flex-direction: column;
+        justify-content: space-evenly;
+        align-content: space-between;
+        /* display: inline; */
+        /* justify-content: space-between; */
+        
         
 
         
     }
-    
-    main #plans{ 
-        margin: 10px;
-        width: 70%;
-        
+    main #shoppingCart .container #cart button{
+        width: 18vw;
+        height: 6vh;
     }
 }

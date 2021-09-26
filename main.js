@@ -14,7 +14,7 @@ async function getCombo(){
     - phone, which contains the information related to phone plans.
     After that, it distributes the data into divs, to be displayed on the screen. */
     try {
-        const response = await fetch("https://6128e8660e3482001777b216.mockapi.io/selftec/combo");
+        const response = await fetch("http://localhost:3000/combo"); //this URL should be switched to the actual provided API
         const data = await response.json();
         combo = data.data;
         getPlans(data);
@@ -157,7 +157,7 @@ const swiper = new Swiper('.swiper', {
     // slidesPerPage: 6,
     slidesPerGroup: 1,
     centeredSlides: true,
-    centeredSlidesBounds: true,
+    // centeredSlidesBounds: true,
 
     // If we need pagination
     pagination: {
