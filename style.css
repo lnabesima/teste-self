@@ -75,8 +75,8 @@ main #shoppingCart{
 main #shoppingCart .container #cart{
     display: grid;
     grid-template: 1fr 1fr / 1fr 1fr;
-    gap: 0.2rem;
-    padding: 0px 10px;
+    gap: 0.2rem 0.5rem;
+    padding: 5px 10px;
 }
 
 main #shoppingCart button{
@@ -125,7 +125,9 @@ main #plans #dataPlans, main #plans #phonePlans{
     /* border: 1px dotted blue; */
 }
 
-
+.swiper-pagination-bullet-active{
+    background: var(--base-color) !important;
+}
 
 @media (min-width: 768px){
     /*-- Bases --*/
@@ -162,7 +164,7 @@ main #plans #dataPlans, main #plans #phonePlans{
     }
     
     main #shoppingCart .container #cart{
-        height: 77vh;
+        height: 75vh;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;

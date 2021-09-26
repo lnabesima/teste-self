@@ -14,7 +14,7 @@ async function getCombo(){
     - phone, which contains the information related to phone plans.
     After that, it distributes the data into divs, to be displayed on the screen. */
     try {
-        const response = await fetch("http://localhost:3000/combo"); //this URL should be switched to the actual provided API
+        const response = await fetch("https://6128e8660e3482001777b216.mockapi.io/selftec/combo");
         const data = await response.json();
         combo = data.data;
         getPlans(data);
@@ -51,6 +51,7 @@ function addDiv(element, id){
     let newDiv = document.createElement("div");
     let newPlan = document.createElement("p"); //adding the plan name
     let textNode = document.createTextNode(element.description);
+
     newPlan.appendChild(textNode);
     newPlan.setAttribute("class", "plan");
     newDiv.appendChild(newPlan);
@@ -67,9 +68,7 @@ function addDiv(element, id){
     let button = document.createElement("button");
     button.innerHTML = "Selecionar";
     button.setAttribute("class", "btn");
-    button.addEventListener('click', () =>{
-        compare(element.description, element.id)
-    })
+    button.addEventListener('click', () =>{compare(element.description, element.id)});
     newDiv.appendChild(button);
 
     newDiv.setAttribute("class", "swiper-slide")
@@ -152,6 +151,7 @@ const swiper = new Swiper('.swiper', {
     // Optional parameters
     direction: 'horizontal',
     mousewheel: true,
+    grabCursor: true,
     // loop: true,
     slidesPerView: 'auto',
     // slidesPerPage: 6,
@@ -164,3 +164,4 @@ const swiper = new Swiper('.swiper', {
         el: '.swiper-pagination',
     },
 });
+
