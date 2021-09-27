@@ -13,7 +13,7 @@ html{
 
 
 h1{
-    margin: 5px 15px;
+    margin: 1vh 2vw;
 }
 
 h2{
@@ -62,7 +62,6 @@ button:active{
     --base-color-2: #F26716;
     --button-color-1: #D92818;
     --button-color-2: #A62929;
-    --text-color: 
 }
 
 
@@ -89,14 +88,13 @@ main #shoppingCart button{
 
 main #plans #dataPlans, main #plans #phonePlans{
     margin: 0 20px;
-    /* border: 1px solid green; */
     padding-bottom: 10px;
 }
 
 
 
-#plans .container{
-    margin-bottom: 20px;
+#plans .phone{
+    margin-top: 3vh;
 }
 
 #dataPlans div, #phonePlans div{
