@@ -119,8 +119,7 @@ main #plans #dataPlans, main #plans #phonePlans{
 .swiper-pagination{
     position: absolute;
     top: 85%;
-    margin: 10px;
-    /* border: 1px dotted blue; */
+    margin: 1vh;
 }
 
 .swiper-pagination-bullet-active{
@@ -168,11 +167,6 @@ main #plans #dataPlans, main #plans #phonePlans{
         justify-content: space-evenly;
         align-content: space-between;
         /* display: inline; */
-        /* justify-content: space-between; */
-        
-        
-
-        
     }
     main #shoppingCart .container #cart button{
         width: 18vw;
