@@ -3,7 +3,6 @@
     margin: 0;
     border: 0;
     box-sizing: border-box;
-    /* font-size: 10px; */
 }
 
 html{
@@ -13,7 +12,8 @@ html{
 
 
 h1{
-    margin: 1vh 2vw;
+    width: 90vw;
+    margin: 0.5vw auto;
 }
 
 h2{
@@ -91,8 +91,6 @@ main #plans #dataPlans, main #plans #phonePlans{
     padding-bottom: 10px;
 }
 
-
-
 #plans .phone{
     margin-top: 3vh;
 }
@@ -128,6 +126,10 @@ main #plans #dataPlans, main #plans #phonePlans{
 
 @media (min-width: 768px){
     /*-- Bases --*/
+    h1{
+        margin: 1vh 2vw;
+    }
+
     .container{
         width: 70vw;
         height: 41vh;
@@ -143,13 +145,11 @@ main #plans #dataPlans, main #plans #phonePlans{
         margin-right: 30vw;
     }
 
-    
     #dataPlans div, #phonePlans div{
         width: 20vw;
         height: 25vh;
         padding: 1vw;
     }
-
 
     main #shoppingCart, main #shoppingCart .container{
         position: absolute;
@@ -159,14 +159,13 @@ main #plans #dataPlans, main #plans #phonePlans{
         padding: 0;
         margin: 0;
     }
-    
+
     main #shoppingCart .container #cart{
         height: 75vh;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         align-content: space-between;
-        /* display: inline; */
     }
     main #shoppingCart .container #cart button{
         width: 18vw;
